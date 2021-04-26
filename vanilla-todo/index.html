@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div>
+        <input id="task" placeholder="Task name...">
+        <button onclick="onAddTask()">Add</button>
+    </div>
+    <div>
+        <label>
+            <input type="checkbox" onchange="onToggleHideCompleted()">
+            Hide completed tasks
+        </label>
+    </div>
+    <hr>
+    <div id="todoList">
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

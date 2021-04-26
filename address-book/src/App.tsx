@@ -1,41 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import './App.css';
-import { Editor } from './Editor';
-import { List } from './List';
-import { AppState, EditorMode, Contact } from './Types';
+import React, { useEffect, useState } from 'react'
+import { ContactList } from './ContactList'
+import { AppState } from './Types'
 
-
-function App() {
-
-  const [state, setState] = useState({
-    mode: EditorMode.NONE,
-    selectedId: null,
-    data: []
-  } as AppState)
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch('http://localhost:8080/list');
-      setState({...state, data: await response.json()})
-    }
-
-    fetchData()
-  })
-
-  const onSelect = (id: number) => {
-    setState({...state, selectedId: id})
-  }
-
-  const onUpdate = (c: Contact) => {
-    setState({...state, selectedId: id})
-  }
-
-  return (
-    <div className="App">
-      <List data={state.data} onSelect={onSelect} />
-      <Editor selectedId={state.selectedId} onUpdate={onUpdate} />
-    </div>
-  );
+const initialState: AppState = {
+    list: [],
+    filterKey: ''
 }
 
-export default App;
+const App = () => {
+    const [state, setState] = useState(initialState)
+
+    const fetchList = async () => {
+        const res = await fetch('http://localhost:8080/list')
+        setState({...state, list: await res.json()})
+    }
+    fetchList()
+    useEffect(() => {
+        fetchList()
+    }, [setState])
+
+    return <div>
+        <h2>Contacts</h2>
+        <input type="search" placeholder="Find..." value={state.filterKey} onChange={e => setState({...state, filterKey: e.target.value})} />
+        <hr/>
+
+        <ContactList list={state.list.filter(c => !state.filterKey.length || c.name.indexOf(state.filterKey) > -1)} />
+    </div>
+}
+
+export default App

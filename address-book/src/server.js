@@ -1,4 +1,4 @@
-const Hapi = require('hapi');
+const Hapi = require('@hapi/hapi');
 
 var db = [
     {id: 1, name: 'Abe', phone: '0965885655', email: 'abe@gmail.com'},
