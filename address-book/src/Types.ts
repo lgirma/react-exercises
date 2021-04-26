@@ -4,8 +4,3 @@ export interface Contact {
     email: string
     phone: string
 }
-
-export interface AppState {
-    list: Contact[],
-    filterKey: string
-}

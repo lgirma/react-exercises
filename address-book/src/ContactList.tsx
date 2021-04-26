@@ -3,9 +3,10 @@ import { Contact } from "./Types";
 
 export interface ContactListProps {
     list: Contact[]
+    onEdit: (c: Contact) => void
 }
 
-export const ContactList = ({list}: ContactListProps) => {
+export const ContactList = ({list, onEdit}: ContactListProps) => {
     return <table>
         <thead>
             <tr>
@@ -23,7 +24,7 @@ export const ContactList = ({list}: ContactListProps) => {
                 <td>{c.phone}</td>
                 <td><a href={`mailto:${c.email}`}>{c.email}</a></td>
                 <td>
-                    <button>Edit</button>
+                    <button onClick={e => onEdit(c)}>Edit</button>
                     <button>Delete</button>
                 </td>
             </tr>)}

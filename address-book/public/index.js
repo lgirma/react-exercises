@@ -1052,7 +1052,7 @@
           }
           return dispatcher.useContext(Context, unstable_observedBits);
         }
-        function useState2(initialState2) {
+        function useState4(initialState2) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useState(initialState2);
         }
@@ -1640,7 +1640,7 @@
         exports.useMemo = useMemo;
         exports.useReducer = useReducer;
         exports.useRef = useRef;
-        exports.useState = useState2;
+        exports.useState = useState4;
         exports.version = ReactVersion;
       })();
     }
@@ -2460,11 +2460,11 @@
     if (true) {
       (function() {
         "use strict";
-        var React4 = require_react();
+        var React6 = require_react();
         var _assign = require_object_assign();
         var Scheduler = require_scheduler();
         var tracing = require_tracing();
-        var ReactSharedInternals = React4.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+        var ReactSharedInternals = React6.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
         function warn(format) {
           {
             for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -2496,7 +2496,7 @@
             Function.prototype.apply.call(console[level], console, argsWithFormat);
           }
         }
-        if (!React4) {
+        if (!React6) {
           {
             throw Error("ReactDOM was loaded before React. Make sure you load the React package before loading ReactDOM.");
           }
@@ -3712,7 +3712,7 @@
         var didWarnInvalidChild = false;
         function flattenChildren(children) {
           var content = "";
-          React4.Children.forEach(children, function(child) {
+          React6.Children.forEach(children, function(child) {
             if (child == null) {
               return;
             }
@@ -3723,7 +3723,7 @@
         function validateProps(element, props) {
           {
             if (typeof props.children === "object" && props.children !== null) {
-              React4.Children.forEach(props.children, function(child) {
+              React6.Children.forEach(props.children, function(child) {
                 if (child == null) {
                   return;
                 }
@@ -10929,7 +10929,7 @@
         }
         var fakeInternalInstance = {};
         var isArray = Array.isArray;
-        var emptyRefsObject = new React4.Component().refs;
+        var emptyRefsObject = new React6.Component().refs;
         var didWarnAboutStateAssignmentForComponent;
         var didWarnAboutUninitializedState;
         var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -20450,48 +20450,156 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   });
 
   // src/index.tsx
-  var import_react3 = __toModule(require_react());
+  var import_react7 = __toModule(require_react());
   var import_react_dom = __toModule(require_react_dom());
 
   // src/App.tsx
+  var import_react6 = __toModule(require_react());
+
+  // src/ContactEdit.tsx
+  var import_react = __toModule(require_react());
   var import_react2 = __toModule(require_react());
+  var ContactEdit = ({contact, onUpdate, onCancelEdit}) => {
+    const [clone, setClone] = (0, import_react2.useState)(contact);
+    return /* @__PURE__ */ import_react.default.createElement("form", {
+      onSubmit: (e) => {
+        onUpdate(clone);
+        e.preventDefault();
+      }
+    }, /* @__PURE__ */ import_react.default.createElement("div", null, /* @__PURE__ */ import_react.default.createElement("label", null, "Name: ", /* @__PURE__ */ import_react.default.createElement("input", {
+      value: clone.name,
+      onChange: (e) => setClone({...clone, name: e.target.value})
+    }))), /* @__PURE__ */ import_react.default.createElement("div", null, /* @__PURE__ */ import_react.default.createElement("label", null, "Email: ", /* @__PURE__ */ import_react.default.createElement("input", {
+      value: clone.email,
+      onChange: (e) => setClone({...clone, email: e.target.value})
+    }))), /* @__PURE__ */ import_react.default.createElement("div", null, /* @__PURE__ */ import_react.default.createElement("label", null, "Phone: ", /* @__PURE__ */ import_react.default.createElement("input", {
+      value: clone.phone,
+      onChange: (e) => setClone({...clone, phone: e.target.value})
+    }))), /* @__PURE__ */ import_react.default.createElement("div", null, /* @__PURE__ */ import_react.default.createElement("button", {
+      type: "submit"
+    }, "Update"), /* @__PURE__ */ import_react.default.createElement("button", {
+      onClick: onCancelEdit
+    }, "Cancel")));
+  };
 
   // src/ContactList.tsx
-  var import_react = __toModule(require_react());
-  var ContactList = ({list}) => {
-    return /* @__PURE__ */ import_react.default.createElement("table", null, /* @__PURE__ */ import_react.default.createElement("thead", null, /* @__PURE__ */ import_react.default.createElement("tr", null, /* @__PURE__ */ import_react.default.createElement("th", null, "#"), /* @__PURE__ */ import_react.default.createElement("th", null, "Name"), /* @__PURE__ */ import_react.default.createElement("th", null, "Phone"), /* @__PURE__ */ import_react.default.createElement("th", null, "Email"), /* @__PURE__ */ import_react.default.createElement("th", null))), /* @__PURE__ */ import_react.default.createElement("tbody", null, list.map((c) => /* @__PURE__ */ import_react.default.createElement("tr", {
+  var import_react3 = __toModule(require_react());
+  var ContactList = ({list, onEdit}) => {
+    return /* @__PURE__ */ import_react3.default.createElement("table", null, /* @__PURE__ */ import_react3.default.createElement("thead", null, /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("th", null, "#"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Name"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Phone"), /* @__PURE__ */ import_react3.default.createElement("th", null, "Email"), /* @__PURE__ */ import_react3.default.createElement("th", null))), /* @__PURE__ */ import_react3.default.createElement("tbody", null, list.map((c) => /* @__PURE__ */ import_react3.default.createElement("tr", {
       key: c.id
-    }, /* @__PURE__ */ import_react.default.createElement("td", null, c.id), /* @__PURE__ */ import_react.default.createElement("td", null, c.name), /* @__PURE__ */ import_react.default.createElement("td", null, c.phone), /* @__PURE__ */ import_react.default.createElement("td", null, /* @__PURE__ */ import_react.default.createElement("a", {
+    }, /* @__PURE__ */ import_react3.default.createElement("td", null, c.id), /* @__PURE__ */ import_react3.default.createElement("td", null, c.name), /* @__PURE__ */ import_react3.default.createElement("td", null, c.phone), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("a", {
       href: `mailto:${c.email}`
-    }, c.email)), /* @__PURE__ */ import_react.default.createElement("td", null, /* @__PURE__ */ import_react.default.createElement("button", null, "Edit"), /* @__PURE__ */ import_react.default.createElement("button", null, "Delete"))))));
+    }, c.email)), /* @__PURE__ */ import_react3.default.createElement("td", null, /* @__PURE__ */ import_react3.default.createElement("button", {
+      onClick: (e) => onEdit(c)
+    }, "Edit"), /* @__PURE__ */ import_react3.default.createElement("button", null, "Delete"))))));
+  };
+
+  // src/ContactNew.tsx
+  var import_react4 = __toModule(require_react());
+  var import_react5 = __toModule(require_react());
+  var ContactNew = ({onCreate, onCancel}) => {
+    const [contact, setContact] = (0, import_react5.useState)({name: "", phone: "", email: ""});
+    return /* @__PURE__ */ import_react4.default.createElement("form", {
+      onSubmit: (e) => {
+        onCreate(contact);
+        e.preventDefault();
+      }
+    }, /* @__PURE__ */ import_react4.default.createElement("div", null, /* @__PURE__ */ import_react4.default.createElement("label", null, "Name: ", /* @__PURE__ */ import_react4.default.createElement("input", {
+      value: contact.name,
+      onChange: (e) => setContact({...contact, name: e.target.value})
+    }))), /* @__PURE__ */ import_react4.default.createElement("div", null, /* @__PURE__ */ import_react4.default.createElement("label", null, "Email: ", /* @__PURE__ */ import_react4.default.createElement("input", {
+      value: contact.email,
+      onChange: (e) => setContact({...contact, email: e.target.value})
+    }))), /* @__PURE__ */ import_react4.default.createElement("div", null, /* @__PURE__ */ import_react4.default.createElement("label", null, "Phone: ", /* @__PURE__ */ import_react4.default.createElement("input", {
+      value: contact.phone,
+      onChange: (e) => setContact({...contact, phone: e.target.value})
+    }))), /* @__PURE__ */ import_react4.default.createElement("div", null, /* @__PURE__ */ import_react4.default.createElement("button", {
+      type: "submit"
+    }, "Create"), /* @__PURE__ */ import_react4.default.createElement("button", {
+      onClick: onCancel
+    }, "Cancel")));
   };
 
   // src/App.tsx
+  var Forms;
+  (function(Forms2) {
+    Forms2[Forms2["NONE"] = 0] = "NONE";
+    Forms2[Forms2["EDIT"] = 1] = "EDIT";
+    Forms2[Forms2["CREATE"] = 2] = "CREATE";
+  })(Forms || (Forms = {}));
   var initialState = {
     list: [],
-    filterKey: ""
+    filterKey: "",
+    selected: null,
+    forms: 0
   };
+  function getFilteredList(list, filterKey) {
+    let key = filterKey.toUpperCase();
+    return list.filter((c) => !filterKey.length || c.name.toUpperCase().indexOf(key) > -1 || c.email.toUpperCase().indexOf(key) > -1);
+  }
   var App = () => {
-    const [state, setState] = (0, import_react2.useState)(initialState);
+    const [state, setState] = (0, import_react6.useState)(initialState);
+    const onEdit = (c) => {
+      setState({...state, selected: c, forms: 1});
+    };
+    const onCancelEdit = () => {
+      setState({...state, selected: null, forms: 0});
+    };
+    const onUpdate = (c) => {
+      fetch(`http://localhost:8080/update/${c.id}`, {
+        method: "POST",
+        body: JSON.stringify(c),
+        headers: {"Content-Type": "application/json"}
+      }).then((res) => fetchList()).then((res) => onCancelEdit());
+    };
+    const onNew = () => {
+      setState({...state, forms: 2, selected: null});
+    };
+    const onCreate = (c) => {
+      fetch("http://localhost:8080/create", {
+        method: "PUT",
+        body: JSON.stringify(c),
+        headers: {"Content-Type": "application/json"}
+      }).then((res) => fetchList()).then((res) => onCancelEdit());
+    };
     const fetchList = async () => {
       const res = await fetch("http://localhost:8080/list");
       setState({...state, list: await res.json()});
     };
-    fetchList();
-    (0, import_react2.useEffect)(() => {
+    (0, import_react6.useEffect)(() => {
       fetchList();
-    }, [setState]);
-    return /* @__PURE__ */ import_react2.default.createElement("div", null, /* @__PURE__ */ import_react2.default.createElement("h2", null, "Contacts"), /* @__PURE__ */ import_react2.default.createElement("input", {
-      type: "search",
-      placeholder: "Find...",
-      value: state.filterKey,
-      onChange: (e) => setState({...state, filterKey: e.target.value})
-    }), /* @__PURE__ */ import_react2.default.createElement("hr", null), /* @__PURE__ */ import_react2.default.createElement(ContactList, {
-      list: state.list.filter((c) => !state.filterKey.length || c.name.indexOf(state.filterKey) > -1)
-    }));
+    }, []);
+    let editor;
+    if (state.selected != null) {
+      editor = /* @__PURE__ */ import_react6.default.createElement(ContactEdit, {
+        contact: state.selected,
+        onUpdate,
+        onCancelEdit
+      });
+    } else if (state.forms == 2) {
+      editor = /* @__PURE__ */ import_react6.default.createElement(ContactNew, {
+        onCreate,
+        onCancel: onCancelEdit
+      });
+    } else {
+      editor = /* @__PURE__ */ import_react6.default.createElement("div", null, /* @__PURE__ */ import_react6.default.createElement("input", {
+        type: "search",
+        placeholder: "Find...",
+        value: state.filterKey,
+        onChange: (e) => setState({...state, filterKey: e.target.value})
+      }), /* @__PURE__ */ import_react6.default.createElement(ContactList, {
+        list: getFilteredList(state.list, state.filterKey),
+        onEdit
+      }), /* @__PURE__ */ import_react6.default.createElement("button", {
+        onClick: (e) => fetchList()
+      }, "Refresh"));
+    }
+    return /* @__PURE__ */ import_react6.default.createElement("div", null, /* @__PURE__ */ import_react6.default.createElement("h2", null, "Contacts"), /* @__PURE__ */ import_react6.default.createElement("hr", null), /* @__PURE__ */ import_react6.default.createElement("button", {
+      onClick: (e) => onNew()
+    }, "New Contact..."), editor);
   };
   var App_default = App;
 
   // src/index.tsx
-  import_react_dom.default.render(/* @__PURE__ */ import_react3.default.createElement(App_default, null), document.getElementById("root"));
+  import_react_dom.default.render(/* @__PURE__ */ import_react7.default.createElement(App_default, null), document.getElementById("root"));
 })();
