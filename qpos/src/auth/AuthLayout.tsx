@@ -7,11 +7,11 @@ export interface AuthLayoutProps {
     loginHandler: LoginHandler
 }
 
-export const AuthLayout = ({loginHandler}: AuthLayoutProps) => {
+export const AuthLayout = () => {
     const {toggleColorMode} = useColorMode();
     return <Flex height="100vh" alignItems="center" justifyContent="center">
         <Flex direction="column" p={12} rounded={6}>
-            <Login loginHandler={loginHandler} />
+            <Login />
             <Button onClick={toggleColorMode}>Toggle Dark/Light</Button>
         </Flex>
     </Flex>

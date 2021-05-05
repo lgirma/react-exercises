@@ -1,16 +1,16 @@
 import { Button } from "@chakra-ui/react";
-import React from "react";
-import {LogoutHandler} from "../Types";
+import React, {useContext} from "react";
+import {SecurityContext, LogoutHandler} from "../Types";
 
-export interface POSLayoutProps {
-    logoutHandler: LogoutHandler
-}
 
-export const POSLayout = ({logoutHandler}: POSLayoutProps) => {
+export const POSLayout = () => {
+
+    const securityCtx = useContext(SecurityContext);
+
     return <div>
-        POS Page
+        POS Page. Welcome, {securityCtx.user?.fullName}
         <div>
-            <Button onClick={logoutHandler}>Logout</Button>
+            <Button onClick={e => securityCtx.logout()}>Logout</Button>
         </div>
     </div>
 }
