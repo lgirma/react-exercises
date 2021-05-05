@@ -1,18 +1,39 @@
-import React, { useState } from 'react'
+import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import './App.css'
+import {AuthLayout} from "./auth/AuthLayout";
+import {POSLayout} from "./pos/POSLayout";
+import {PageNotFound} from "./common/PageNotFound";
+
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <div className="App">      
-        <p>
-          <button onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>        
-    </div>
-  )
+    return (
+        <Router>
+            <div>
+                <nav>
+                    <ul>
+                        <li>
+                            <Link to="/auth">Auth</Link>
+                        </li>
+                        <li>
+                            <Link to="/pos">Point-of-Sale</Link>
+                        </li>
+                    </ul>
+                </nav>
+                <Switch>
+                    <Route path="/auth">
+                        <AuthLayout />
+                    </Route>
+                    <Route path="/pos">
+                        <POSLayout />
+                    </Route>
+                    <Route path="*">
+                        <PageNotFound />
+                    </Route>
+                </Switch>
+            </div>
+        </Router>
+    )
 }
 
 export default App
