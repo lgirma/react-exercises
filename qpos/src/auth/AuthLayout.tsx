@@ -1,10 +1,18 @@
 import React from "react";
-import {ChakraProvider} from "@chakra-ui/react"
+import {Button, Flex, useColorMode} from "@chakra-ui/react"
 import {Login} from "./Login";
+import {LoginHandler} from "../Types";
 
-export const AuthLayout = () => {
+export interface AuthLayoutProps {
+    loginHandler: LoginHandler
+}
 
-    return <ChakraProvider>
-        <Login />
-    </ChakraProvider>
+export const AuthLayout = ({loginHandler}: AuthLayoutProps) => {
+    const {toggleColorMode} = useColorMode();
+    return <Flex height="100vh" alignItems="center" justifyContent="center">
+        <Flex direction="column" p={12} rounded={6}>
+            <Login loginHandler={loginHandler} />
+            <Button onClick={toggleColorMode}>Toggle Dark/Light</Button>
+        </Flex>
+    </Flex>
 }
